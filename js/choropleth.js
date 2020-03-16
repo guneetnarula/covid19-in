@@ -216,22 +216,27 @@
 			function stateData(){
 				var s_totals = [];
 				var flag = 0;
+
 				for ( var i = 0; i < data.length; i++ ){
-					flag = 0;
+					flag = 0; //CHECKS IF ARRAY ALREADY HAS STATE
 					s_totals.forEach( function(state){
 						if(state.name == data[i]["State"]) flag = 1;
 					});
+
 					if (flag == 0) {
 						var totals = allCounts("State", data[i]["State"]);
 						s_totals.push({name:data[i]["State"],cc:totals[0],di:totals[1],de:totals[2],ac:totals[3]});
 					}
 				}
-				s_totals.sort((a,b) => b.cc - a.cc);
-				console.log(s_totals);
+
+				s_totals.sort((a,b) => b.cc - a.cc); //SORT BY CONFIRMED CASES
+				//console.log(s_totals);
 				var stateHTML = "<table><tbody><tr><th>State</th><th>Confirmed Cases</th><th>Discharged/Recovered</th><th>Deaths</th><th>Active Cases</th></tr>";
 				s_totals.forEach( function(state) {
 					stateHTML = stateHTML + '<tr><td>'+state.name+'</td><td>'+state.cc+'</td><td>'+state.di+'</td><td>'+state.de+'</td><td>'+state.ac+'</td></tr>';
 				});
+				stateHTML = stateHTML + '</tbody></table>';
+
 				return stateHTML;
 			}
 
