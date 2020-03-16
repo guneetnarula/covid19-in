@@ -1,6 +1,6 @@
 (function ($) {
 
-	$.fn.choropleth_map = function(data){
+	$.fn.choropleth_map = function(data, metadata){
 
 		return this.each(function() {
 
@@ -25,6 +25,8 @@
         //$legend.attr('id', 'legend');
 				$legend.html('<h5>Map Key:</h5><p><span class="key-item" style="background-color:#feebe2"></span> No cases reported</p><p><span class="key-item" style="background-color:#fbb4b9"></span> Less than 5 cases</p><p><span class="key-item" style="background-color:#f768a1"></span> Between 5 and 10 cases</p><p><span class="key-item" style="background-color:#c51b8a"></span> Between 10 and 15</p><p><span class="key-item" style="background-color:#7a0177"></span> More than 15</p>');
         $legend.appendTo('#legend');
+
+				$("#timestamp").empty().append(metadata[0]["Value"]);
 
 				//NATIONAL LEVEL TOTALS
 				var totals = [0,0,0,0]
@@ -274,9 +276,11 @@ jQuery(document).ready(function(){
 	Tabletop.init( { key: "1AL1cj_33m3D7JkT-_wPB7LPJAqIfV2Y5XVMui7nczy4", callback: getdata, simpleSheet: false } );
 
 	function getdata(d, tabletop) {
-		var data = [];
+		var data, metadata = [];
 		data = tabletop.sheets("raw").elements;
-		jQuery( '[data-behaviour~=choropleth-map]' ).choropleth_map(data);
+		metadata = tabletop.sheets("readme").elements;
+		console.log(metadata);
+		jQuery( '[data-behaviour~=choropleth-map]' ).choropleth_map(data, metadata);
 	}
 
 });
