@@ -70,7 +70,7 @@
         //var hybUrl='https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ3VuZWV0bmFydWxhIiwiYSI6IldYQUNyd0UifQ.EtQC56soqWJ-KBQqHwcpuw';
         var hybUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
         var hybAttrib = 'Map data © <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors & <a href="http://datameet.org" target="_blank">Data{Meet}</a>';
-        var hyb = new L.TileLayer(hybUrl, {minZoom: 3, maxZoom: 12, attribution: hybAttrib, opacity:1}).addTo(map);
+        var hyb = new L.TileLayer(hybUrl, {minZoom: 4, maxZoom: 12, attribution: hybAttrib, opacity:1}).addTo(map);
 
         //---------------ADD DISTRICT BOUNDARIES
 
@@ -78,7 +78,7 @@
         //gjLayerDist.addTo(map);
 				gjLayerDist = L.esri.featureLayer({
 					url:"https://webgis1.nic.in/publishing/rest/services/bharatmaps/admin2019/MapServer/7",
-					useCors: false,
+					useCors: true,
 					simplifyFactor: 0.1,
 					style: styledist,
 					onEachFeature: onEachDist
@@ -142,10 +142,10 @@
 				return {
           fillColor: color,
           weight: 1,
-          opacity: 0.7,
+          opacity: 0.5,
           color: 'black',
           dashArray: '1',
-          fillOpacity: 0.9
+          fillOpacity: 1
         };
       }
 
@@ -173,7 +173,6 @@
         });
 				layer.on('click', function(e, feature){
 					zoomToFeature(e);
-					console.log(feature);
 				});
         layer.bindTooltip( feature.properties["dtname"] + ', ' + feature.properties["stname"], {
           direction : 'auto',
@@ -279,7 +278,7 @@ jQuery(document).ready(function(){
 		var data, metadata = [];
 		data = tabletop.sheets("raw").elements;
 		metadata = tabletop.sheets("readme").elements;
-		console.log(metadata);
+
 		jQuery( '[data-behaviour~=choropleth-map]' ).choropleth_map(data, metadata);
 	}
 
