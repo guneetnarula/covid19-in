@@ -46,7 +46,7 @@
 				});
 				$('#ct-modal').click( function () {
 					$("#infoModalLabel").empty().append("Contribute to this Map");
-					$(".modal-body").empty().append('<p>If you are familiar with Leaflet and jQuery, check out the git repo and contribute</p><p>If you are a journalist or someone carefully tracking news, you can help maintain the data. See the <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRlSCAn1nS4h9n9Fp25iuOsH54RfMUjj3xX5CZqjGUqYCVXgwgtJojuqVeqekazs2TkSJ95Jwplo7lL/pubhtml#" target="_blank"">readme sheet here</a>.</p>');
+					$(".modal-body").empty().append('<p>If you are familiar with Leaflet and jQuery, check out the <a href="https://github.com/guneetnarula/covid19-in" target="_blank">git repo</a> and contribute</p><p>If you are a journalist or someone carefully tracking news, you can help maintain the data. See the <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRlSCAn1nS4h9n9Fp25iuOsH54RfMUjj3xX5CZqjGUqYCVXgwgtJojuqVeqekazs2TkSJ95Jwplo7lL/pubhtml#" target="_blank"">readme sheet here</a>.</p>');
 				});
 				$('#st-modal').click( function () {
 					$("#infoModalLabel").empty().append("State Level Data");
