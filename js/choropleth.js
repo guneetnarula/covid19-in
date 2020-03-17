@@ -74,16 +74,16 @@
 
         //---------------ADD DISTRICT BOUNDARIES
 
-			  //var gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist } );
-        //gjLayerDist.addTo(map);
-				gjLayerDist = L.esri.featureLayer({
+			var gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist } );
+			gjLayerDist.addTo(map);
+			/*	gjLayerDist = L.esri.featureLayer({
 					url:"https://webgis1.nic.in/publishing/rest/services/bharatmaps/admin2019/MapServer/7",
 					useCors: true,
 					simplifyFactor: 0.1,
 					style: styledist,
 					onEachFeature: onEachDist
-				}).addTo(map);
-				gjLayerDist.bringToFront();
+				}).addTo(map); */
+			gjLayerDist.bringToFront();
 
         //---------------ADD STATE BOUNDARIES
 
@@ -161,7 +161,7 @@
 						count = count + Number(data[i]["Confirmed Cases"]);
 					}
         }
-
+				console.log(count)
 				return count;
 			}
 
