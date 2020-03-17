@@ -74,7 +74,7 @@
 
         //---------------ADD DISTRICT BOUNDARIES
 
-			var gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist } );
+			gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist } );
 			gjLayerDist.addTo(map);
 			/*	gjLayerDist = L.esri.featureLayer({
 					url:"https://webgis1.nic.in/publishing/rest/services/bharatmaps/admin2019/MapServer/7",
@@ -83,20 +83,14 @@
 					style: styledist,
 					onEachFeature: onEachDist
 				}).addTo(map); */
-			gjLayerDist.bringToFront();
+			//gjLayerDist.bringToFront();
 
         //---------------ADD STATE BOUNDARIES
 
-        //var gjLayerStates = L.geoJson( geoStates, { style: statelines } );
-        //gjLayerStates.addTo(map);
 
-				//gjLayerStates = L.esri.featureLayer({
-        	//url: "https://webgis1.nic.in/publishing/rest/services/bharatmaps/admin2019/MapServer/6",
-					//useCors: false,
-					//simplifyFactor: 0.1,
-					//style: stylestate
-      	//}).addTo(map);
-				//gjLayerStates.bringToBack();
+        gjLayerStates = L.geoJson( geoStates, { style: stylestate } );
+        gjLayerStates.addTo(map);
+
       }
 			//END OF drawMap
 
@@ -115,15 +109,14 @@
 			//-----------------------------
 
 			function stylestate( feature ) {
-        //STATE STYLES - CURRENTLY NOT USING THIS
+        //STATE STYLES
 
 				//var c_count = counter("State", feature);
 				return {
-					fillColor: false,
           weight: 1,
-          opacity: 1,
-          color: 'black',
-          fillOpacity: 0
+          opacity: 0.9,
+          color: "#000",
+          fill: false
         };
       }
 
@@ -142,7 +135,7 @@
 				return {
           fillColor: color,
           weight: 1,
-          opacity: 0.5,
+          opacity: 0.4,
           color: 'black',
           dashArray: '1',
           fillOpacity: 1
@@ -191,7 +184,7 @@
         layer.setStyle( {
           weight: 3,
           color: 'violet',
-          opacity: 0.9
+          opacity: 0.8
         } );
         if ( !L.Browser.ie && !L.Browser.opera ) {
           layer.bringToFront();
@@ -204,13 +197,16 @@
           layer.setStyle({
             weight: 1,
             color: 'black',
-            opacity: 0.7
+            opacity: 0.4
           });
+					if ( !L.Browser.ie && !L.Browser.opera ) {
+	          layer.bringToBack();
+	        }
       }
 
       function zoomToFeature(e) {
 				//ZOOM TO DISTRICT ON CLICK
-        map.fitBounds(e.target.getBounds(), {maxZoom:12});
+        map.fitBounds(e.target.getBounds().pad(1));
       }
 
 			//STATE COUNTS FOR MODAL
