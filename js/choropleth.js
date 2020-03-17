@@ -44,7 +44,7 @@
 				//MODAL INFO
 				$('#abt-modal').click( function () {
 					$("#infoModalLabel").empty().append("About this Map");
-					$(".modal-body").empty().append('<p>This map is an attempt at tracking CoVid-19 cases in India at the district level. The source of this data is news reports, and the official <a href="http://www.mohfw.gov.in/" target="_blank">numbers from MoHFW</a> are used as a reference. The <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRlSCAn1nS4h9n9Fp25iuOsH54RfMUjj3xX5CZqjGUqYCVXgwgtJojuqVeqekazs2TkSJ95Jwplo7lL/pubhtml#" target="_blank">data is compiled here</a>.</p><p>The map uses official district boundaries from the ArcGIS REST Services provided by the National Informatics Centre, <a href="https://webgis1.nic.in/publishing/rest/services/bharatmaps" target="_blank">hosted here</a>.</p>');
+					$(".modal-body").empty().append('<p>This map is an attempt at tracking CoVid-19 cases in India at the district level. The source of this data is news reports, and the official <a href="http://www.mohfw.gov.in/" target="_blank">numbers from MoHFW</a> are used as a reference. The <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRlSCAn1nS4h9n9Fp25iuOsH54RfMUjj3xX5CZqjGUqYCVXgwgtJojuqVeqekazs2TkSJ95Jwplo7lL/pubhtml#" target="_blank">data is compiled here</a>.</p><p>The map uses official district boundaries from the ArcGIS REST Services provided by the National Informatics Centre, <a href="https://webgis1.nic.in/publishing/rest/services/bharatmaps" target="_blank">hosted here</a>.</p><p>If you need help or more information about the pandemic, consider the following links:</p><ul><li><a href="https://www.who.int/health-topics/coronavirus" target="_blank">World Health Organization</a></li><li><a href="http://www.mohfw.gov.in/" target="_blank">Ministry of Health and Family Welfare</a></li><li><a href="https://ourworldindata.org/coronavirus" target="_blank">Our World in Data</a></li><li><a href="https://www.coronasafe.in/" target="_blank">Coronasafe</a></li></ul>');
 				});
 				$('#ct-modal').click( function () {
 					$("#infoModalLabel").empty().append("Contribute to this Map");
@@ -240,7 +240,7 @@
 
 				return stateHTML;
 			}
-
+			//CASES COUNTS FOR STATES
 			function allCounts(level, name) {
 				var totals = [0,0,0,0];
 				for ( var i = 0; i < data.length; i++ ){
