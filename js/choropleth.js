@@ -124,7 +124,7 @@
         //DISTRICTS STYLES - CHOROPLETH COLORS BASED ON RANGE ONLY
         var color = "#feebe2";
 
-				var c_count = counter("District", feature);
+				var c_count = counter("District", feature); //JUST FINDS THE CORRECT ROW
 
 				if (c_count > 15) color = "#7a0177";
 				else if (c_count > 10 && c_count <= 15 ) color = "#c51b8a";
@@ -147,14 +147,13 @@
 				var count = 0;
 
 				if (level == "District") var property = "dtname";
-				else var property = "stname"; //this will change if states layer is activated
+				else var property = "stname"; 
 
 				for (var i = 0;i<data.length;i++){
-          if (data[i][level] == feature.properties[property]) {
+          if (data[i][level] == feature.properties[property] && data[i]["State"] == feature.properties['stname']) {
 						count = count + Number(data[i]["Confirmed Cases"]);
 					}
         }
-				console.log(count)
 				return count;
 			}
 
