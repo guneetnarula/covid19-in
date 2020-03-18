@@ -23,7 +23,7 @@
 
 				var $legend = jQuery( document.createElement( 'div' ) );
         //$legend.attr('id', 'legend');
-				$legend.html('<h5>Map Key:</h5><p><span class="key-item" style="background-color:#feebe2"></span> No cases reported</p><p><span class="key-item" style="background-color:#fbb4b9"></span> Less than 5 cases</p><p><span class="key-item" style="background-color:#f768a1"></span> Between 5 and 10 cases</p><p><span class="key-item" style="background-color:#c51b8a"></span> Between 10 and 15</p><p><span class="key-item" style="background-color:#7a0177"></span> More than 15</p>');
+				$legend.html('<h5>Map Key:</h5><p><span class="key-item" style="background-color:#feebe2"></span> No cases reported</p><p><span class="key-item" style="background-color:#fbb4b9"></span> 5 cases or less</p><p><span class="key-item" style="background-color:#f768a1"></span> 6 to 10 cases</p><p><span class="key-item" style="background-color:#c51b8a"></span> 11 to 15 cases</p><p><span class="key-item" style="background-color:#7a0177"></span> More than 15</p>');
         $legend.appendTo('#legend');
 
 				$("#timestamp").empty().append(metadata[0]["Value"]);
@@ -76,14 +76,6 @@
 
 			gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist } );
 			gjLayerDist.addTo(map);
-			/*	gjLayerDist = L.esri.featureLayer({
-					url:"https://webgis1.nic.in/publishing/rest/services/bharatmaps/admin2019/MapServer/7",
-					useCors: true,
-					simplifyFactor: 0.1,
-					style: styledist,
-					onEachFeature: onEachDist
-				}).addTo(map); */
-			//gjLayerDist.bringToFront();
 
         //---------------ADD STATE BOUNDARIES
 
@@ -147,7 +139,7 @@
 				var count = 0;
 
 				if (level == "District") var property = "dtname";
-				else var property = "stname"; 
+				else var property = "stname";
 
 				for (var i = 0;i<data.length;i++){
           if (data[i][level] == feature.properties[property] && data[i]["State"] == feature.properties['stname']) {
