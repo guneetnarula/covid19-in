@@ -54,6 +54,10 @@
 					$("#infoModalLabel").empty().append("State Level Data");
 					$(".modal-body").empty().append(stateData());
 				});
+				$('#dt-modal').click( function () {
+					$("#infoModalLabel").empty().append("District Level Data");
+					$(".modal-body").empty().append(districtData());
+				});
       }
 
 
@@ -239,6 +243,18 @@
 					}
 				}
 				return totals;
+			}
+
+			//DISTRICTS MODAL
+			function districtData() {
+				data.sort((a,b) => b["Confirmed Cases"] - a["Confirmed Cases"]);
+				var districtHTML = "<table><tbody><tr><th>District</th><th>State</th><th>Confirmed Cases</th><th>Discharged/Recovered</th><th>Deaths</th><th>Active Cases</th></tr>";
+				data.forEach( function(district) {
+					districtHTML = districtHTML + '<tr><td>'+district["District"]+'</td><td>'+district["State"]+'</td><td>'+district["Confirmed Cases"]+'</td><td>'+district["Discharged"]+'</td><td>'+district["Deaths"]+'</td><td>'+district["Active"]+'</td></tr>';
+				});
+				districtHTML = districtHTML + '</tbody></table>';
+
+				return districtHTML;
 			}
 
       // INITIALIZE FUNCTION
