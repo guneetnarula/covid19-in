@@ -14,14 +14,14 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/normalize.css">
-		<link rel="stylesheet" href="css/style.css?v=1.2">
+		<link rel="stylesheet" href="css/style.css?v=1.2.1">
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   	</head>
 	<body>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-3 sidebar">
+				<div id="sidebar" class="col-sm-3">
 					<h2 class="title">Reported CoVid-19 Cases 🇮🇳</h2>
 					<small>Data based on news reports, <a href="http://www.mohfw.gov.in/" target="_blank">compare with MoHFW here</a></small><br>
 					<small>Data last updated on <span id="timestamp"></span></small>
@@ -49,15 +49,15 @@
 							</tr>
 						</tbody>
 					</table>
-					<a href="#map" class="d-md-none d-lg-none d-xl-none">Scroll to Map</a>
-					<hr>
 					<div>
 						<div class="btn-group" role="group">
   						<button id="st-modal" data-toggle="modal" data-target="#infoModal" type="button" class="btn btn-primary">State Level Data</button>
 							<button id="dt-modal" data-toggle="modal" data-target="#infoModal" type="button" class="btn btn-info">District Level Data</button>
 						</div>
 					</div>
+					<hr>
 					<p>Interact with the highlighted districts on the map to get the breakup of cases for each district. Note that some small districts are only visible at high zoom levels.</p>
+					<a href="#map" class="d-md-none d-lg-none d-xl-none">Scroll down to Map</a>
 					<div id="legend"></div>
 					<div class="btn-group" role="group">
 						<button id="abt-modal" data-toggle="modal" data-target="#infoModal" type="button" class="btn btn-warning">About this Map</button>
@@ -96,4 +96,4 @@
 <!--script src="js/leaflet.geocsv.js"></script-->
 <script src="js/india_dist_770.js"></script>
 <script src="js/states.js"></script>
-<script src="js/choropleth.js?v=1.4"></script>
+<script src="js/choropleth.js?v=1.4.1"></script>

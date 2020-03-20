@@ -21,6 +21,13 @@
         $map.attr('id', 'map');
         $map.appendTo( $el );
 
+				var $goTop = jQuery( document.createElement( 'a' ) );
+        $goTop.attr('id', 'top-btn');
+				$goTop.attr('href', '#sidebar');
+				$goTop.addClass('d-md-none d-lg-none d-xl-none')
+				$goTop.html('<i class="fa fa-caret-up"></i>')
+        $goTop.appendTo( $el );
+
 				var $legend = jQuery( document.createElement( 'div' ) );
         //$legend.attr('id', 'legend');
 				$legend.html('<h5>Map Key:</h5><p><span class="key-item" style="background-color:#feebe2"></span> No cases reported</p><p><span class="key-item" style="background-color:#fbb4b9"></span> 5 cases or less</p><p><span class="key-item" style="background-color:#f768a1"></span> 6 to 10 cases</p><p><span class="key-item" style="background-color:#c51b8a"></span> 11 to 15 cases</p><p><span class="key-item" style="background-color:#7a0177"></span> More than 15</p>');
