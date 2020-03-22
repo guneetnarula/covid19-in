@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>District Names - Reported CoVid-19 Cases in India</title>
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css?v=1.2.1">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+		<script src="js/india_dist_770.js"></script>
+  </head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12" style="padding:20px">
+					<h5>Standardized district names for reference</h5>
+					<div>
+						<table>
+							<tbody id="district-names">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+
+			var districts = [];
+			var sorted = [];
+
+			for (var i = 0; i < geodist.features.length; i++) {
+				districts.push({
+					id: i,
+					attributes: geodist.features[i]["properties"]
+				});
+			}
+
+			districts.sort((a, b) => (a.attributes["stname"] > b.attributes["stname"]) ? 1 : -1);
+
+			$('#district-names').append('<tr><th>State</th><th>District</th></tr>');
+			for (var i = 0; i < districts.length; i++) {
+				$('#district-names').append('<tr><td>'+districts[i].attributes["stname"]+'</td><td>'+districts[i].attributes["dtname"]+'</td></tr>')
+			}
+			//$('#district-names').append('</tbody></table>');
+
+			/*var current = districts[0].attributes["stname"];
+			console.log(current);
+
+			for (var i = 0; i < districts.length; i++) {
+				var temp = [];
+				if (districts[i].attributes["stname"] == current) {
+					temp[0] = districts[i];
+					temp[1] = districts[i+1];
+					temp.sort((a,b) => a.attributes["dtname"] > b.attributes["dtname"]);
+					sorted.push(temp[0]);
+					sorted.push(temp[1]);
+				}
+				else current = districts[i].attributes["stname"];
+			}
+
+			console.log(sorted);*/
+
+		</script>
+  </body>
+</html>
