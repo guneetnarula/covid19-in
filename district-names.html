@@ -46,9 +46,9 @@
 
 			districts.sort((a, b) => (a.attributes["stname"] > b.attributes["stname"]) ? 1 : -1);
 
-			$('#district-names').append('<tr><th>State</th><th>District</th></tr>');
+			$('#district-names').append('<tr><th>#</th><th>State</th><th>District</th></tr>');
 			for (var i = 0; i < districts.length; i++) {
-				$('#district-names').append('<tr><td>'+districts[i].attributes["stname"]+'</td><td>'+districts[i].attributes["dtname"]+'</td></tr>')
+				$('#district-names').append('<tr><td>'+i+'</td><td>'+districts[i].attributes["stname"]+'</td><td>'+districts[i].attributes["dtname"]+'</td></tr>')
 			}
 			//$('#district-names').append('</tbody></table>');
 

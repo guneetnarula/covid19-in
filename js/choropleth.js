@@ -255,9 +255,9 @@
 			//DISTRICTS MODAL
 			function districtData() {
 				data.sort((a,b) => b["Confirmed Cases"] - a["Confirmed Cases"]);
-				var districtHTML = "<table><tbody><tr><th>District</th><th>State</th><th>Confirmed Cases</th><th>Discharged/Recovered</th><th>Deaths</th><th>Active Cases</th></tr>";
+				var districtHTML = "<table><tbody><tr><th>District</th><th>State</th><th>Confirmed Cases</th><th>Discharged/Recovered</th><th>Deaths</th><th>Active Cases</th><th>Notes</th></tr>";
 				data.forEach( function(district) {
-					districtHTML = districtHTML + '<tr><td>'+district["District"]+'</td><td>'+district["State"]+'</td><td>'+district["Confirmed Cases"]+'</td><td>'+district["Discharged"]+'</td><td>'+district["Deaths"]+'</td><td>'+district["Active"]+'</td></tr>';
+					districtHTML = districtHTML + '<tr><td>'+district["District"]+'</td><td>'+district["State"]+'</td><td>'+district["Confirmed Cases"]+'</td><td>'+district["Discharged"]+'</td><td>'+district["Deaths"]+'</td><td>'+district["Active"]+'</td><td>'+district["Notes"]+'</td></tr>';
 				});
 				districtHTML = districtHTML + '</tbody></table>';
 
