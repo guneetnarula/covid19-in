@@ -7,7 +7,7 @@
       var $el = jQuery( this );
 
 			var map, gjLayerDist, gjLayerStates;
-
+			console.log(metadata);
       // CREATE ELEMENTS ON THE FLY
       function createElements(){
 
@@ -47,6 +47,8 @@
 				$('#tot_disch').empty().append(totals[1]);
 				$('#tot_death').empty().append(totals[2]);
 				$('#tot_act').empty().append(totals[3]);
+				$("#st_aff").empty().append(metadata[6]["Value"]+'/37');
+				$("#dt_aff").empty().append(metadata[5]["Value"]+'/729');
 
 				//MODAL INFO
 				$('#abt-modal').click( function () {
