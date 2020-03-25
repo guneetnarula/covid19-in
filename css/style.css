@@ -78,3 +78,13 @@ table th, table td {
   text-align: center;
   font-size: 22px;
 }
+.leaflet-popup-content-wrapper {
+  border-radius:1px !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.7) !important;;
+}
+.leaflet-container a.leaflet-popup-close-button {
+	top: 4px !important;;
+	right: 4px !important;;
+	font-size: 18px !important;;
+	color: #999 !important;;
+}
