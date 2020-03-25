@@ -30,7 +30,7 @@
 
 				var $legend = jQuery( document.createElement( 'div' ) );
         //$legend.attr('id', 'legend');
-				$legend.html('<h5>Map Key:</h5><p><span class="key-item" style="background-color:#feebe2"></span> No cases reported</p><p><span class="key-item" style="background-color:#fbb4b9"></span> 5 cases or less</p><p><span class="key-item" style="background-color:#f768a1"></span> 6 to 10 cases</p><p><span class="key-item" style="background-color:#c51b8a"></span> 11 to 15 cases</p><p><span class="key-item" style="background-color:#7a0177"></span> More than 15</p>');
+				$legend.html('<h5>Map Key:</h5><p><span class="key-item" style="background-color:#feebe2"></span> No cases reported</p><p><span class="key-item" style="background-color:#fbb4b9"></span> 5 cases or less</p><p><span class="key-item" style="background-color:#f768a1"></span> 6 to 10 cases</p><p><span class="key-item" style="background-color:#c51b8a"></span> 11 to 20 cases</p><p><span class="key-item" style="background-color:#7a0177"></span> More than 20</p>');
         $legend.appendTo('#legend');
 
 				$("#timestamp").empty().append(metadata[0]["Value"]);
@@ -131,8 +131,8 @@
 
 				var c_count = counter("District", feature); //JUST FINDS THE CORRECT ROW
 
-				if (c_count > 15) color = "#7a0177";
-				else if (c_count > 10 && c_count <= 15 ) color = "#c51b8a";
+				if (c_count > 20) color = "#7a0177";
+				else if (c_count > 10 && c_count <= 20 ) color = "#c51b8a";
 				else if (c_count > 5 && c_count <= 10) color = "#f768a1";
 				else if (c_count >= 1 && c_count <= 5) color = "#fbb4b9";
 				else {color = "#feebe2";}
@@ -210,7 +210,7 @@
 
       function zoomToFeature(e) {
 				//ZOOM TO DISTRICT ON CLICK
-        map.fitBounds(e.target.getBounds().pad(1));
+        map.fitBounds(e.target.getBounds().pad(1.5));
       }
 
 			//STATE COUNTS FOR MODAL
