@@ -30,20 +30,27 @@ p {font-size: 15px;}
 }
 
 #legend {
-  background-color: #f9f9f9;
-  border: 1px solid #eee;
-  padding: 10px;
-  margin: 20px 0;
+  position: absolute;
+  bottom: 20px;
+  left:20px;
+  z-index: 1000;
 }
-#legend .key-item {
+/*#legend .key-item {
   width: 18px;
   height: 18px;
   display: inline-block;
   vertical-align: middle;
   border: 1px solid #aaa;
+}*/
+#legend .key-item {
+  padding: 3px 9px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #fff;
 }
 #legend p {
   font-size: 14px;
+  text-align: center;
 }
 
 table {
@@ -67,7 +74,7 @@ table th, table td {
 #top-btn{
   position: absolute;
   bottom:25px;
-  right:25px;
+  right:20px;
   background-color: #111;
   width:30px;
   height:30px;

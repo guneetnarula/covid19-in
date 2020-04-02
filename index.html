@@ -1,10 +1,17 @@
 <html>
 	<head>
-		<title>Reported CoVid-19 Cases in India by Districts</title>
+		<title>Reported CoViD-19 Cases in India by Districts</title>
 
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+		<meta property="og:title" content="District Map of CoViD-19 in India">
+		<meta property="og:description" content="Tracking the spread  of CoViD-19 in India on a district map">
+		<meta property="og:image" content="map-screenshot.png">
+		<meta property="og:url" content="https://fieldmaps.in/covid19/">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:image:alt" content="Image shows a map of all Indian district boundaries, each filled with a shade of pink based on the number of reported cases from it">
+
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
@@ -14,7 +21,7 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/normalize.css">
-		<link rel="stylesheet" href="css/style.css?v=1.2.3">
+		<link rel="stylesheet" href="css/style.css?v=1.3">
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
@@ -76,8 +83,7 @@
 					</div>
 					<hr>
 					<p>Interact with the highlighted districts on the map to get the breakup of cases for each district. Note that some small districts are only visible at high zoom levels.</p>
-					<a href="#map" class="d-md-none d-lg-none d-xl-none">Scroll down to Map</a>
-					<div id="legend"></div>
+					<p><a href="#map" class="d-md-none d-lg-none d-xl-none">Scroll down to Map</a></p>
 					<div class="btn-group" role="group">
 						<button id="abt-modal" data-toggle="modal" data-target="#infoModal" type="button" class="btn btn-warning">About this Map</button>
 						<button id="ct-modal" data-toggle="modal" data-target="#infoModal" type="button" class="btn btn-success">Contribute</button>
@@ -85,6 +91,7 @@
 				</div>
 				<div class="col-sm-9 p-0">
 					<div data-behaviour="choropleth-map"></div>
+					<div id="legend"></div>
 				</div>
 			</div>
 		</div>
@@ -114,4 +121,4 @@
 <script src="js/tabletop.js"></script>
 <script src="js/districts_729.js"></script>
 <script src="js/states.js"></script>
-<script src="js/choropleth.js?v=1.5.1"></script>
+<script src="js/choropleth.js?v=1.6"></script>
