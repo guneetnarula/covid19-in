@@ -71,10 +71,7 @@
 				});
       }
 
-
-
       function drawMap(){
-				//console.log(data);
 
         // HIDE THE LOADER
         $('.loader').hide();
@@ -85,12 +82,12 @@
         //var hybUrl='https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ3VuZWV0bmFydWxhIiwiYSI6IldYQUNyd0UifQ.EtQC56soqWJ-KBQqHwcpuw';
         var hybUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
         var hybAttrib = 'Map data © <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors & <a href="http://datameet.org" target="_blank">Data{Meet}</a>';
-        var hyb = new L.TileLayer(hybUrl, {minZoom: 4, maxZoom: 8, attribution: hybAttrib, opacity:1}).addTo(map);
+        var hyb = new L.TileLayer(hybUrl, {minZoom: 4, maxZoom: 7, attribution: hybAttrib, opacity:1}).addTo(map);
 
         //---------------ADD DISTRICT BOUNDARIES
 
-			gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist } );
-			gjLayerDist.addTo(map);
+				gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist } );
+				gjLayerDist.addTo(map);
 
         //---------------ADD STATE BOUNDARIES
 
@@ -100,8 +97,6 @@
 
       }
 			//END OF drawMap
-
-
 
 			function popContent( feature ) {
         //FOR DISTRICT POP UPS ON CLICK
@@ -217,6 +212,10 @@
         map.fitBounds(e.target.getBounds().pad(1.6));
       }
 
+			$('#resetZoom').click(function(){
+				map.setZoom(5);
+			});
+
 			//STATE COUNTS FOR MODAL
 			function stateData(){
 				var s_totals = [];
@@ -235,7 +234,7 @@
 				}
 
 				s_totals.sort((a,b) => b.cc - a.cc); //SORT BY CONFIRMED CASES
-				//console.log(s_totals);
+
 				var stateHTML = "<table><tbody><tr><th>State</th><th>Confirmed Cases</th><th>Discharged/Recovered</th><th>Deaths</th><th>Active Cases</th></tr>";
 				s_totals.forEach( function(state) {
 					stateHTML = stateHTML + '<tr><td>'+state.name+'</td><td>'+state.cc+'</td><td>'+state.di+'</td><td>'+state.de+'</td><td>'+state.ac+'</td></tr>';

@@ -51,7 +51,21 @@ p {font-size: 15px;}
   font-size: 14px;
   text-align: center;
 }
-
+#resetZoom {
+  position: absolute;
+  top:80px;
+  left:12px;
+  z-index:700;
+  border-radius: 5px;
+  height:30px;
+  width:30px;
+  border:2px solid #aaa;
+  background: white;
+  color:#333;
+  font-size: 14px;
+  padding: 6px;
+  cursor: pointer;
+}
 table {
   margin:20px 0;
   max-width:100%;
