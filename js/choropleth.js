@@ -11,11 +11,11 @@
       // CREATE ELEMENTS ON THE FLY
       function createElements(){
 
-        var $loader = jQuery( document.createElement( 'div' ) );
+        /*var $loader = jQuery( document.createElement( 'div' ) );
         $loader.addClass('spinner-grow');
 				$loader.attr('role', 'status');
         $loader.html( '<span class="sr-only">Loading...</span>' );
-        $loader.appendTo( $el );
+        $loader.appendTo( $el );*/
 
         var $map = jQuery( document.createElement( 'div' ) );
         $map.attr('id', 'map');
@@ -31,7 +31,7 @@
 				var $legend = jQuery( document.createElement( 'div' ) );
         //$legend.attr('id', 'legend');
 				//$legend.html('<h5>Map Key:</h5><p><span class="key-item" style="background-color:#feebe2"></span> No cases reported</p><p><span class="key-item" style="background-color:#fbb4b9"></span> 5 cases or less</p><p><span class="key-item" style="background-color:#f768a1"></span> 6 to 15 cases</p><p><span class="key-item" style="background-color:#c51b8a"></span> 16 to 30 cases</p><p><span class="key-item" style="background-color:#7a0177"></span> 31 to 50</p><p><span class="key-item" style="background-color:#190019"></span> More than 50</p>');
-				$legend.html('<strong>Number of cases:</strong><br><p class="key-item" style="background-color:#feebe2"> Nil</p><p class="key-item" style="background-color:#fbb4b9"> 1 to 5 </p><p class="key-item" style="background-color:#f768a1"> 6 to 15 </p><p class="key-item" style="background-color:#c51b8a;color:white"> 16 to 40 </p><p class="key-item" style="background-color:#7a0177;color:white"> 41 to 75 </p><p class="key-item" style="background-color:#360134;color:white"> 75+ </p>');
+				$legend.html('<strong>Number of cases:</strong><br><p class="key-item" style="background-color:#feebe2"> Nil</p><p class="key-item" style="background-color:#fbb4b9"> 1 to 5 </p><p class="key-item" style="background-color:#f768a1"> 6 to 20 </p><p class="key-item" style="background-color:#c51b8a;color:white"> 21 to 75 </p><p class="key-item" style="background-color:#7a0177;color:white"> 76 to 150 </p><p class="key-item" style="background-color:#360134;color:white"> 150+ </p>');
 
         $legend.appendTo('#legend');
 
@@ -77,7 +77,7 @@
 				//console.log(data);
 
         // HIDE THE LOADER
-        $el.find('.spinner-grow').hide();
+        $('.loader').hide();
 
 				//SETUP BASEMAP
 				map = L.map('map').setView( [22.27, 80.37], 5 );
@@ -85,7 +85,7 @@
         //var hybUrl='https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ3VuZWV0bmFydWxhIiwiYSI6IldYQUNyd0UifQ.EtQC56soqWJ-KBQqHwcpuw';
         var hybUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
         var hybAttrib = 'Map data © <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors & <a href="http://datameet.org" target="_blank">Data{Meet}</a>';
-        var hyb = new L.TileLayer(hybUrl, {minZoom: 4, maxZoom: 12, attribution: hybAttrib, opacity:1}).addTo(map);
+        var hyb = new L.TileLayer(hybUrl, {minZoom: 4, maxZoom: 8, attribution: hybAttrib, opacity:1}).addTo(map);
 
         //---------------ADD DISTRICT BOUNDARIES
 
@@ -134,11 +134,11 @@
 				var c_count = counter("District", feature); //JUST FINDS THE CORRECT ROW
 
 				//if (c_count > 30) color = "#7a0177";
-				if (c_count > 75) color = "#360134";
-				else if (c_count > 40 && c_count <= 75) color = "#7a0177";
-				else if (c_count > 15 && c_count <= 40 ) color = "#c51b8a";
-				else if (c_count > 5 && c_count <= 15) color = "#f768a1";
-				else if (c_count >= 1 && c_count <= 5) color = "#fbb4b9";
+				if (c_count > 150) color = "#360134";
+				else if (c_count > 75 && c_count <= 150) color = "#7a0177";
+				else if (c_count > 20 && c_count <= 75 ) color = "#c51b8a";
+				else if (c_count > 5 && c_count <= 20) color = "#f768a1";
+				else if (c_count > 0 && c_count <= 5) color = "#fbb4b9";
 				else {color = "#feebe2";}
 
 				return {
@@ -214,7 +214,7 @@
 
       function zoomToFeature(e) {
 				//ZOOM TO DISTRICT ON CLICK
-        map.fitBounds(e.target.getBounds().pad(1.5));
+        map.fitBounds(e.target.getBounds().pad(1.6));
       }
 
 			//STATE COUNTS FOR MODAL
