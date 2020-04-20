@@ -11,12 +11,6 @@
       // CREATE ELEMENTS ON THE FLY
       function createElements(){
 
-        /*var $loader = jQuery( document.createElement( 'div' ) );
-        $loader.addClass('spinner-grow');
-				$loader.attr('role', 'status');
-        $loader.html( '<span class="sr-only">Loading...</span>' );
-        $loader.appendTo( $el );*/
-
         var $map = jQuery( document.createElement( 'div' ) );
         $map.attr('id', 'map');
         $map.appendTo( $el );
@@ -29,9 +23,8 @@
         $goTop.appendTo( $el );
 
 				var $legend = jQuery( document.createElement( 'div' ) );
-        //$legend.attr('id', 'legend');
-				//$legend.html('<h5>Map Key:</h5><p><span class="key-item" style="background-color:#feebe2"></span> No cases reported</p><p><span class="key-item" style="background-color:#fbb4b9"></span> 5 cases or less</p><p><span class="key-item" style="background-color:#f768a1"></span> 6 to 15 cases</p><p><span class="key-item" style="background-color:#c51b8a"></span> 16 to 30 cases</p><p><span class="key-item" style="background-color:#7a0177"></span> 31 to 50</p><p><span class="key-item" style="background-color:#190019"></span> More than 50</p>');
-				$legend.html('<strong>Number of cases:</strong><br><p class="key-item" style="background-color:#feebe2"> Nil</p><p class="key-item" style="background-color:#fbb4b9"> 1 to 5 </p><p class="key-item" style="background-color:#f768a1"> 6 to 20 </p><p class="key-item" style="background-color:#c51b8a;color:white"> 21 to 75 </p><p class="key-item" style="background-color:#7a0177;color:white"> 76 to 150 </p><p class="key-item" style="background-color:#360134;color:white"> 150+ </p>');
+        
+				$legend.html('<strong>Number of cases:</strong><br><p class="key-item" style="background-color:#feebe2"> Nil</p><p class="key-item" style="background-color:#fbb4b9"> 1 to 5 </p><p class="key-item" style="background-color:#f768a1"> 5 to 40 </p><p class="key-item" style="background-color:#c51b8a;color:white"> 41 to 100 </p><p class="key-item" style="background-color:#7a0177;color:white"> 101 to 200 </p><p class="key-item" style="background-color:#360134;color:white"> 200+ </p>');
 
         $legend.appendTo('#legend');
 
@@ -50,7 +43,7 @@
 				$('#tot_death').empty().append(totals[2]);
 				$('#tot_act').empty().append(totals[3]);
 				$("#st_aff").empty().append(metadata[6]["Value"]+'/37');
-				$("#dt_aff").empty().append(metadata[5]["Value"]+'/729');
+				$("#dt_aff").empty().append(metadata[5]["Value"]+'/734');
 
 				//MODAL INFO
 				$('#abt-modal').click( function () {
@@ -129,10 +122,10 @@
 				var c_count = counter("District", feature); //JUST FINDS THE CORRECT ROW
 
 				//if (c_count > 30) color = "#7a0177";
-				if (c_count > 150) color = "#360134";
-				else if (c_count > 75 && c_count <= 150) color = "#7a0177";
-				else if (c_count > 20 && c_count <= 75 ) color = "#c51b8a";
-				else if (c_count > 5 && c_count <= 20) color = "#f768a1";
+				if (c_count > 200) color = "#360134";
+				else if (c_count > 100 && c_count <= 200) color = "#7a0177";
+				else if (c_count > 40 && c_count <= 200 ) color = "#c51b8a";
+				else if (c_count > 5 && c_count <= 40) color = "#f768a1";
 				else if (c_count > 0 && c_count <= 5) color = "#fbb4b9";
 				else {color = "#feebe2";}
 
