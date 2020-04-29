@@ -23,8 +23,8 @@
         $goTop.appendTo( $el );
 
 				var $legend = jQuery( document.createElement( 'div' ) );
-        
-				$legend.html('<strong>Number of cases:</strong><br><p class="key-item" style="background-color:#feebe2"> Nil</p><p class="key-item" style="background-color:#fbb4b9"> 1 to 5 </p><p class="key-item" style="background-color:#f768a1"> 5 to 40 </p><p class="key-item" style="background-color:#c51b8a;color:white"> 41 to 100 </p><p class="key-item" style="background-color:#7a0177;color:white"> 101 to 200 </p><p class="key-item" style="background-color:#360134;color:white"> 200+ </p>');
+
+				$legend.html('<strong>Number of cases:</strong><br><p class="key-item" style="background-color:#feebe2"> Nil</p><p class="key-item" style="background-color:#fbb4b9"> 1 to 10 </p><p class="key-item" style="background-color:#f768a1"> 11 to 75 </p><p class="key-item" style="background-color:#c51b8a;color:white"> 76 to 150 </p><p class="key-item" style="background-color:#7a0177;color:white"> 151 to 300 </p><p class="key-item" style="background-color:#360134;color:white"> 300+ </p>');
 
         $legend.appendTo('#legend');
 
@@ -42,8 +42,11 @@
 				$('#tot_disch').empty().append(totals[1]);
 				$('#tot_death').empty().append(totals[2]);
 				$('#tot_act').empty().append(totals[3]);
-				$("#st_aff").empty().append(metadata[6]["Value"]+'/37');
-				$("#dt_aff").empty().append(metadata[5]["Value"]+'/734');
+				$("#st_aff").empty().append('<span>'+metadata[6]["Value"]+'/37<span>');
+				$("#st_aff").attr('style', 'width:'+(Number(metadata[6]["Value"])/37)*100+'%');
+
+				$("#dt_aff").empty().append('<span>'+metadata[5]["Value"]+'/734<span>');
+				$("#dt_aff").attr('style', 'width:'+(Number(metadata[5]["Value"])/734)*100+'%');
 
 				//MODAL INFO
 				$('#abt-modal').click( function () {
@@ -122,11 +125,11 @@
 				var c_count = counter("District", feature); //JUST FINDS THE CORRECT ROW
 
 				//if (c_count > 30) color = "#7a0177";
-				if (c_count > 200) color = "#360134";
-				else if (c_count > 100 && c_count <= 200) color = "#7a0177";
-				else if (c_count > 40 && c_count <= 200 ) color = "#c51b8a";
-				else if (c_count > 5 && c_count <= 40) color = "#f768a1";
-				else if (c_count > 0 && c_count <= 5) color = "#fbb4b9";
+				if (c_count > 300) color = "#360134";
+				else if (c_count > 150 && c_count <= 300) color = "#7a0177";
+				else if (c_count > 75 && c_count <= 150 ) color = "#c51b8a";
+				else if (c_count > 10 && c_count <= 75) color = "#f768a1";
+				else if (c_count > 0 && c_count <= 10) color = "#fbb4b9";
 				else {color = "#feebe2";}
 
 				return {
@@ -228,7 +231,7 @@
 
 				s_totals.sort((a,b) => b.cc - a.cc); //SORT BY CONFIRMED CASES
 
-				var stateHTML = "<table><tbody><tr><th>State</th><th>Confirmed Cases</th><th>Discharged/Recovered</th><th>Deaths</th><th>Active Cases</th></tr>";
+				var stateHTML = "<table><tbody><tr><th>State</th><th>Confirmed Cases</th><th>Discharged / Recovered</th><th>Deaths</th><th>Active Cases</th></tr>";
 				s_totals.forEach( function(state) {
 					stateHTML = stateHTML + '<tr><td>'+state.name+'</td><td>'+state.cc+'</td><td>'+state.di+'</td><td>'+state.de+'</td><td>'+state.ac+'</td></tr>';
 				});
@@ -253,7 +256,7 @@
 			//DISTRICTS MODAL
 			function districtData() {
 				data.sort((a,b) => b["Confirmed Cases"] - a["Confirmed Cases"]);
-				var districtHTML = "<table><tbody><tr><th>District</th><th>State</th><th>Confirmed Cases</th><th>Discharged/Recovered</th><th>Deaths</th><th>Active Cases</th><th>Notes</th></tr>";
+				var districtHTML = "<table><tbody><tr><th>District</th><th>State</th><th>Confirmed Cases</th><th>Discharged / Recovered</th><th>Deaths</th><th>Active Cases</th><th>Notes</th></tr>";
 				data.forEach( function(district) {
 					districtHTML = districtHTML + '<tr><td>'+district["District"]+'</td><td>'+district["State"]+'</td><td>'+district["Confirmed Cases"]+'</td><td>'+district["Discharged"]+'</td><td>'+district["Deaths"]+'</td><td>'+district["Active"]+'</td><td>'+district["Notes"]+'</td></tr>';
 				});

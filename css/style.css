@@ -78,6 +78,21 @@ table th, table td {
   text-align: right;
 }
 
+.progress {
+  border-radius: 0;
+  height:30px;
+  font-size: 14px;
+}
+.progress-bar {
+  padding:5px;
+  overflow: visible !important;
+  background-color: #000;
+}
+.progress-bar span{
+  color: #fff;
+  mix-blend-mode: exclusion;
+}
+
 .title{
   margin:20px 0;
 }
