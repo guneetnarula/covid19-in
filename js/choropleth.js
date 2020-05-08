@@ -24,7 +24,7 @@
 
 				var $legend = jQuery( document.createElement( 'div' ) );
 
-				$legend.html('<strong>Number of cases:</strong><br><p class="key-item" style="background-color:#feebe2"> Nil</p><p class="key-item" style="background-color:#fbb4b9"> 1 to 10 </p><p class="key-item" style="background-color:#f768a1"> 11 to 75 </p><p class="key-item" style="background-color:#c51b8a;color:white"> 76 to 150 </p><p class="key-item" style="background-color:#7a0177;color:white"> 151 to 300 </p><p class="key-item" style="background-color:#360134;color:white"> 300+ </p>');
+				$legend.html('<strong>Number of cases:</strong><br><p class="key-item" style="background-color:#feebe2"> Nil</p><p class="key-item" style="background-color:#fbb4b9"> 1 to 10 </p><p class="key-item" style="background-color:#f768a1"> 11 to 100 </p><p class="key-item" style="background-color:#c51b8a;color:white"> 101 to 250 </p><p class="key-item" style="background-color:#7a0177;color:white"> 251 to 600 </p><p class="key-item" style="background-color:#360134;color:white"> 600+ </p>');
 
         $legend.appendTo('#legend');
 
@@ -125,10 +125,10 @@
 				var c_count = counter("District", feature); //JUST FINDS THE CORRECT ROW
 
 				//if (c_count > 30) color = "#7a0177";
-				if (c_count > 300) color = "#360134";
-				else if (c_count > 150 && c_count <= 300) color = "#7a0177";
-				else if (c_count > 75 && c_count <= 150 ) color = "#c51b8a";
-				else if (c_count > 10 && c_count <= 75) color = "#f768a1";
+				if (c_count > 600) color = "#360134";
+				else if (c_count > 250 && c_count <= 600) color = "#7a0177";
+				else if (c_count > 100 && c_count <= 250 ) color = "#c51b8a";
+				else if (c_count > 10 && c_count <= 100) color = "#f768a1";
 				else if (c_count > 0 && c_count <= 10) color = "#fbb4b9";
 				else {color = "#feebe2";}
 
@@ -282,6 +282,10 @@
 }(jQuery));
 
 jQuery(document).ready(function(){
+
+	
+
+
 
 	Tabletop.init( { key: "1AL1cj_33m3D7JkT-_wPB7LPJAqIfV2Y5XVMui7nczy4", callback: getdata, simpleSheet: false } );
 
