@@ -7,7 +7,7 @@
       var $el = jQuery( this );
 
 			var map, gjLayerDist, gjLayerStates;
-			console.log(metadata);
+
       // CREATE ELEMENTS ON THE FLY
       function createElements(){
 
@@ -28,30 +28,37 @@
 
         $legend.appendTo('#legend');
 
-				$("#timestamp").empty().append(metadata[0]["Value"]);
+				$("#timestamp").empty().append(metadata["Last Update"]);
 
 				//NATIONAL LEVEL TOTALS
 				var totals = [0,0,0,0]
-				for (var i = 0; i < data.length; i++){
-					totals[0] = totals[0] + Number(data[i]["Confirmed Cases"]);
-					totals[1] = totals[1] + Number(data[i]["Discharged"]);
-					totals[2] = totals[2] + Number(data[i]["Deaths"]);
-					totals[3] = totals[3] + Number(data[i]["Active"]);
+				var counter = 0;
+				for (var i in data){
+					for (var j in data[i].districtData){
+						totals[0] = totals[0] + data[i].districtData[j].confirmed;
+						totals[1] = totals[1] + data[i].districtData[j].recovered;
+						totals[2] = totals[2] + data[i].districtData[j].deceased;
+						totals[3] = totals[3] + data[i].districtData[j].active;
+
+						if (data[i].districtData[j].district != "Unknown" || data[i].districtData[j].district != "Other State" ) {
+							if (data[i].districtData[j].confirmed > 0) counter++;
+						}
+					}
 				}
 				$('#tot_conf').empty().append(totals[0]);
 				$('#tot_disch').empty().append(totals[1]);
 				$('#tot_death').empty().append(totals[2]);
 				$('#tot_act').empty().append(totals[3]);
-				$("#st_aff").empty().append('<span>'+metadata[6]["Value"]+'/37<span>');
-				$("#st_aff").attr('style', 'width:'+(Number(metadata[6]["Value"])/37)*100+'%');
+				$("#st_aff").empty().append('<span>'+data.length+'/37<span>');
+				$("#st_aff").attr('style', 'width:'+(data.length/37)*100+'%');
 
-				$("#dt_aff").empty().append('<span>'+metadata[5]["Value"]+'/734<span>');
-				$("#dt_aff").attr('style', 'width:'+(Number(metadata[5]["Value"])/734)*100+'%');
+				$("#dt_aff").empty().append('<span>'+counter+'/734<span>');
+				$("#dt_aff").attr('style', 'width:'+(counter/734)*100+'%');
 
 				//MODAL INFO
 				$('#abt-modal').click( function () {
 					$("#infoModalLabel").empty().append("About this Map");
-					$(".modal-body").empty().append('<p>This map is an attempt at tracking CoVid-19 cases in India at the district level. The source of this data is news reports and state bulletins, and the official <a href="http://www.mohfw.gov.in/" target="_blank">numbers from MoHFW</a> are only used as a reference. The <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRlSCAn1nS4h9n9Fp25iuOsH54RfMUjj3xX5CZqjGUqYCVXgwgtJojuqVeqekazs2TkSJ95Jwplo7lL/pubhtml#" target="_blank">data is compiled here</a>.</p><p>Some issues regarding this exercise: a) should the cases be marked where the patient is currently quarantined or where they reside (or where spread may have happened), at this point we are not sure whether state bulletins are according to location of detection; b) Data for Ladakh does not reflect the situation in Aksai Chin and India/Pakistan Occupied Kashmir. Please see <a href="https://www.covid19india.org/" target="_blank">covid19india.org</a> for more up-to-date numbers.</p><p>Feedback is more than welcome. Please DM <a href="https://twitter.com/guneetnarula" target="_blank">@guneetnarula</a>, or <a href="https://github.com/guneetnarula/covid19-in" target="_blank">create an issue here</a>, or write an <a href="mailto:guneet@sputznik.com?subject=covid19 india district map feedback">email</a>. Thank you!</p><hr><p>If you need help or more information about the pandemic, consider the following links:</p><ul><li><a href="https://www.who.int/health-topics/coronavirus" target="_blank">World Health Organization</a></li><li><a href="http://www.mohfw.gov.in/" target="_blank">Ministry of Health and Family Welfare</a></li><li><a href="https://github.com/datameet/covid19" target="_blank">DataMeet Archive on CoVID19</a></li><li><a href="https://www.covid19india.org/" target="_blank">India CoVID 19 tracker</a></li><li><a href="https://ourworldindata.org/coronavirus" target="_blank">Our World in Data</a></li><li><a href="https://www.coronasafe.in/" target="_blank">Coronasafe</a></li></ul>');
+					$(".modal-body").empty().append('<p>This map is an attempt at tracking CoVid-19 cases in India at the district level. The source of this data is <s>news reports and state bulletins, and the official <a href="http://www.mohfw.gov.in/" target="_blank">numbers from MoHFW</a> are only used as a reference. The <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRlSCAn1nS4h9n9Fp25iuOsH54RfMUjj3xX5CZqjGUqYCVXgwgtJojuqVeqekazs2TkSJ95Jwplo7lL/pubhtml#" target="_blank">data is compiled here</a></s> <a href="https://api.covid19india.org/" target="_blank">the covid19india.org API</a>. The data is updated once every six hours. Please see <a href="https://www.covid19india.org/" target="_blank">covid19india.org</a> for more detailed and up-to-date numbers.</p><p>Some issues to consider: a) some state are reporting cases that do not have district information known yet, these are not represented on the map yet but are part of the state totals b) Data for Ladakh does not accurately reflect the situation in Aksai Chin Occupied Kashmir.</p><p>Feedback is more than welcome. Please DM <a href="https://twitter.com/guneetnarula" target="_blank">@guneetnarula</a>, or <a href="https://github.com/guneetnarula/covid19-in" target="_blank">create an issue here</a>, or write an <a href="mailto:guneet@sputznik.com?subject=covid19 india district map feedback">email</a>. Thank you!</p><hr><p>If you need help or more information about the pandemic, consider the following links:</p><ul><li><a href="https://www.who.int/health-topics/coronavirus" target="_blank">World Health Organization</a></li><li><a href="http://www.mohfw.gov.in/" target="_blank">Ministry of Health and Family Welfare</a></li><li><a href="https://github.com/datameet/covid19" target="_blank">DataMeet Archive on CoVID19</a></li><li><a href="https://www.covid19india.org/" target="_blank">India CoVID 19 tracker</a></li><li><a href="https://ourworldindata.org/coronavirus" target="_blank">Our World in Data</a></li><li><a href="https://www.coronasafe.in/" target="_blank">Coronasafe</a></li></ul>');
 				});
 				$('#ct-modal').click( function () {
 					$("#infoModalLabel").empty().append("Contribute to this Map");
@@ -96,12 +103,16 @@
 
 			function popContent( feature ) {
         //FOR DISTRICT POP UPS ON CLICK
-				for(var i = 0; i < data.length; i++) {
-					if (data[i]["District"] == feature.properties["dtname"]) {
-        		return '<h4>'+feature.properties["dtname"]+', '+feature.properties["stname"]+'</h4><hr><p>Confirmed Cases: <b>'+data[i]["Confirmed Cases"]+'</b> out of '+counter("State",feature) +' in the state</p><p>Discharged/Recovered: '+data[i]["Discharged"]+'</p><p>Deaths: '+data[i]["Deaths"]+'</p><p>Active Cases: '+data[i]["Active"]+'</p><hr><small>'+data[i]["Notes"]+'</small>';
-					}
-					else if ( i == data.length-1) return '<h4>'+feature.properties["dtname"]+', '+feature.properties["stname"]+'</h4><hr><p>No cases reported</p>';
+				for(var i in data) {
+					if (data[i].state == feature.properties["st_nm"]) {
+						for (var j in data[i].districtData) {
 
+							if (data[i].districtData[j].district == feature.properties["district"]) {
+		        		return '<h4>'+feature.properties["district"]+', '+feature.properties["st_nm"]+'</h4><hr><p>Confirmed Cases: <b>'+data[i].districtData[j].confirmed+'</b> out of '+counter("state", feature) +' in the state</p><p>Discharged/Recovered: '+data[i].districtData[j].recovered+'</p><p>Deaths: '+data[i].districtData[j].deceased+'</p><p>Active Cases: '+data[i].districtData[j].active+'</p><hr><small>'+data[i].districtData[j].notes+'</small>';
+							}
+
+						}
+					}
 				}
       }
 			//-----------------------------
@@ -122,9 +133,18 @@
         //DISTRICTS STYLES - CHOROPLETH COLORS BASED ON RANGE ONLY
         var color = "#feebe2";
 
-				var c_count = counter("District", feature); //JUST FINDS THE CORRECT ROW
+				// var c_count = counter("District", feature); //JUST FINDS THE CORRECT ROW
 
-				//if (c_count > 30) color = "#7a0177";
+				var c_count = 0;
+				for (var i in data) {
+					if (feature.properties["st_nm"] == data[i].state) {
+						for (var j in data[i].districtData) {
+  						if (feature.properties["district"] == data[i].districtData[j].district)
+  						c_count = data[i].districtData[j].confirmed;
+  					}
+					}
+				}
+
 				if (c_count > 600) color = "#360134";
 				else if (c_count > 250 && c_count <= 600) color = "#7a0177";
 				else if (c_count > 100 && c_count <= 250 ) color = "#c51b8a";
@@ -146,12 +166,11 @@
 				//CASE COUNTER FOR STATES
 				var count = 0;
 
-				if (level == "District") var property = "dtname";
-				else var property = "stname";
-
-				for (var i = 0;i<data.length;i++){
-          if (data[i][level] == feature.properties[property] && data[i]["State"] == feature.properties['stname']) {
-						count = count + Number(data[i]["Confirmed Cases"]);
+				for (var i in data){
+					if (data[i].state == feature.properties['st_nm']) {
+						for (var j in data[i].districtData) {
+							count = count + data[i].districtData[j].confirmed;
+						}
 					}
         }
 				return count;
@@ -166,7 +185,7 @@
 				layer.on('click', function(e, feature){
 					zoomToFeature(e);
 				});
-        layer.bindTooltip( feature.properties["dtname"] + ', ' + feature.properties["stname"], {
+        layer.bindTooltip( feature.properties["district"] + ', ' + feature.properties["st_nm"], {
           direction : 'auto',
           className : 'statelabel',
           permanent : false,
@@ -214,7 +233,8 @@
 
 			//STATE COUNTS FOR MODAL
 			function stateData(){
-				var s_totals = [];
+				return '<p class="text-center alert alert-info">Will be available again in the next update!</p>';
+				/*var s_totals = [];
 				var flag = 0;
 
 				for ( var i = 0; i < data.length; i++ ){
@@ -237,7 +257,7 @@
 				});
 				stateHTML = stateHTML + '</tbody></table>';
 
-				return stateHTML;
+				return stateHTML;*/
 			}
 			//CASES COUNTS FOR STATES
 			function allCounts(level, name) {
@@ -255,6 +275,8 @@
 
 			//DISTRICTS MODAL
 			function districtData() {
+				return '<p class="text-center alert alert-info">Will be available again in the next update!</p>';
+				/*
 				data.sort((a,b) => b["Confirmed Cases"] - a["Confirmed Cases"]);
 				var districtHTML = "<table><tbody><tr><th>District</th><th>State</th><th>Confirmed Cases</th><th>Discharged / Recovered</th><th>Deaths</th><th>Active Cases</th><th>Notes</th></tr>";
 				data.forEach( function(district) {
@@ -262,7 +284,7 @@
 				});
 				districtHTML = districtHTML + '</tbody></table>';
 
-				return districtHTML;
+				return districtHTML;*/
 			}
 
       // INITIALIZE FUNCTION
@@ -283,18 +305,36 @@
 
 jQuery(document).ready(function(){
 
-	
+	var data, metadata = [];
+
+	$.ajax({
+		url: 'data/data.json',
+		async: false,
+		dataType: 'json',
+		success: function (json) {
+			data = json;
+		}
+	});
+
+	$.ajax({
+		url: 'data/meta.json',
+		async: false,
+		dataType: 'json',
+		success: function (json) {
+			metadata = json;
+		}
+	});
 
 
+	jQuery( '[data-behaviour~=choropleth-map]' ).choropleth_map(data, metadata);
 
-	Tabletop.init( { key: "1AL1cj_33m3D7JkT-_wPB7LPJAqIfV2Y5XVMui7nczy4", callback: getdata, simpleSheet: false } );
+	/*Tabletop.init( { key: "1AL1cj_33m3D7JkT-_wPB7LPJAqIfV2Y5XVMui7nczy4", callback: getdata, simpleSheet: false } );
 
 	function getdata(d, tabletop) {
-		var data, metadata = [];
 		data = tabletop.sheets("raw").elements;
 		metadata = tabletop.sheets("readme").elements;
 
 		jQuery( '[data-behaviour~=choropleth-map]' ).choropleth_map(data, metadata);
-	}
+	}*/
 
 });
