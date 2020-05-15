@@ -12,4 +12,4 @@ Uses the following JS libraries
 - popper
 - tabletop
 
-Data is pulled from a [public google sheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vRlSCAn1nS4h9n9Fp25iuOsH54RfMUjj3xX5CZqjGUqYCVXgwgtJojuqVeqekazs2TkSJ95Jwplo7lL/pubhtml#) to make sure collaborations on news report tracking is easy.
+Data was being pulled from a [public google sheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vRlSCAn1nS4h9n9Fp25iuOsH54RfMUjj3xX5CZqjGUqYCVXgwgtJojuqVeqekazs2TkSJ95Jwplo7lL/pubhtml#) but now has moved to the [covid19india.org api](https://github.com/covid19india/api)
