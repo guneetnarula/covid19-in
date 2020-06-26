@@ -24,7 +24,7 @@
 
 				var $legend = jQuery( document.createElement( 'div' ) );
 
-				$legend.html('<strong>Number of cases:</strong><br><p class="key-item" style="background-color:#feebe2"> Nil</p><p class="key-item" style="background-color:#fbb4b9"> 1 to 10 </p><p class="key-item" style="background-color:#f768a1"> 11 to 100 </p><p class="key-item" style="background-color:#c51b8a;color:white"> 101 to 250 </p><p class="key-item" style="background-color:#7a0177;color:white"> 251 to 600 </p><p class="key-item" style="background-color:#360134;color:white"> 600+ </p>');
+				$legend.html('<strong>Number of cases:</strong><br><p class="key-item" style="background-color:#feebe2"> Nil</p><p class="key-item" style="background-color:#fbb4b9"> 1 to 100 </p><p class="key-item" style="background-color:#f768a1"> 101 to 500 </p><p class="key-item" style="background-color:#c51b8a;color:white"> 501 to 2000 </p><p class="key-item" style="background-color:#7a0177;color:white"> 2001 to 3000 </p><p class="key-item" style="background-color:#360134;color:white"> 3000+ </p>');
 
         $legend.appendTo('#legend');
 
@@ -145,11 +145,11 @@
 					}
 				}
 
-				if (c_count > 600) color = "#360134";
-				else if (c_count > 250 && c_count <= 600) color = "#7a0177";
-				else if (c_count > 100 && c_count <= 250 ) color = "#c51b8a";
-				else if (c_count > 10 && c_count <= 100) color = "#f768a1";
-				else if (c_count > 0 && c_count <= 10) color = "#fbb4b9";
+				if (c_count > 3000) color = "#360134";
+				else if (c_count > 2000 && c_count <= 3000) color = "#7a0177";
+				else if (c_count > 500 && c_count <= 2000 ) color = "#c51b8a";
+				else if (c_count > 100 && c_count <= 500) color = "#f768a1";
+				else if (c_count > 0 && c_count <= 100) color = "#fbb4b9";
 				else {color = "#feebe2";}
 
 				return {
